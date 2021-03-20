@@ -16,6 +16,7 @@
 	color: var(--dark);
 	border-radius: 10px;
 	transition: transform .25s ease-out,-webkit-transform .25s ease-out;
+	cursor: pointer;
 }
 
 .pokemon-list__card:hover {
