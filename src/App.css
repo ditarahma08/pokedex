@@ -1,34 +1,34 @@
-.App {
-  text-align: center;
+:root {
+  --white: #fff;
+  --dark: rgba(26, 43, 53, 1);
+  --green: rgba(80, 350, 123, 1);
+  --cyan: rgba(0, 190, 190, 1);
+  --cyanLight: rgba(0, 190, 190, 0.7);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.pokedex-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: var(--dark);
+  height: auto;
+  color: var(--white);
 }
 
-.App-link {
-  color: #61dafb;
+.pokedex-main__header {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  padding: 15px;
 }
 
-@keyframes App-logo-spin {
+.pokedex-main__logo {
+  height: 50px;
+  margin-right: 15px;
+  animation: pokedex-logo-spin infinite 3s linear;
+}
+
+@keyframes pokedex-logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -36,3 +36,56 @@
     transform: rotate(360deg);
   }
 }
+
+.pokedex-main__title {
+  font-size: 24px;
+  letter-spacing: 3px;
+  color: var(--cyan);
+}
+
+.pokedex-main__section {
+  font-family: 'Gugi';
+  font-size: 14px;
+  width: 100%;
+  min-width: 320px;
+  max-width: 767px;
+}
+
+.pokedex-main__menu {
+  position: relative;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  color: var(--cyan);
+  margin: 15px;
+}
+
+.pokedex-main__tab {
+  width: 100%;
+  margin: 0 5px;
+  border: 2px solid var(--cyanLight);
+  padding: 15px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pokedex-main__tab:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  font-weight: bold;
+}
+
+.pokedex-main__content {
+  border: 2px solid var(--cyan);
+  padding: 15px;
+  margin: 15px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
