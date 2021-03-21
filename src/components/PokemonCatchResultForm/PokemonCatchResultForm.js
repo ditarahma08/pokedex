@@ -13,6 +13,12 @@ class PokemonCatchResultForm extends Component {
 		this.setState({ nickname: event.target.value })
 	}
 
+	savePokemon = () => {
+		this.props.savePokemon(this.state.nickname)
+		this.setState({ nickname: '' })
+		this.props.closeModal()
+	}
+
 	render() {
 		return (
 			<div className="pokemon-result">
@@ -21,7 +27,7 @@ class PokemonCatchResultForm extends Component {
 				</div>
 
 				<div className="pokemon-result__button">
-					<button type="button" disabled={ this.state.nickname === '' }>Save</button>
+					<button type="button" disabled={ this.state.nickname === '' } onClick={ this.savePokemon }>Save</button>
 				</div>
 			</div>
 		)

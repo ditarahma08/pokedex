@@ -12,7 +12,8 @@ class App extends Component {
       pokemons: [],
       pokemon: {},
       pokemonName: '',
-      page: 'pokemon-list'
+      page: 'pokemon-list',
+      myPokemonList: []
     };
   }
 
@@ -39,6 +40,16 @@ class App extends Component {
     this.fetchPokemonDetail(data.name)
   }
 
+  onSavePokemon = (nickname) => {
+    const ownedPokemons = this.state.myPokemonList
+    ownedPokemons.push({
+      name: this.state.pokemonName,
+      nickname: nickname,
+      ...this.state.pokemon
+    })
+    this.setState({ myPokemonList: ownedPokemons })
+  }
+
   render() {
 
     const { pokemons, pokemon, pokemonName, page } = this.state;
@@ -46,7 +57,7 @@ class App extends Component {
     if (page === 'pokemon-list') {
       mainPage = <PokemonListAll pokemons={ pokemons } onOpenDetail={ this.openPokemonDetail }></PokemonListAll>;
     } else {
-      mainPage = <PokemonDetail pokemonDetail={ pokemon } pokemonName={ pokemonName }></PokemonDetail>;
+      mainPage = <PokemonDetail pokemonDetail={ pokemon } pokemonName={ pokemonName } savePokemon={ this.onSavePokemon }></PokemonDetail>;
     }
 
     return (

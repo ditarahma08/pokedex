@@ -8,11 +8,15 @@ class PokemonCatchResult extends Component {
 		this.props.onClose()
 	}
 
+	onSavePokemon = (nickname) => {
+		this.props.savePokemon(nickname)
+	}
+
 	render() {
 		let formResult;
 
 		if (this.props.result) {
-			formResult = <PokemonCatchResultForm />
+			formResult = <PokemonCatchResultForm savePokemon={ this.onSavePokemon } closeModal={ this.handleClose }/>
 		} else {
 			formResult = null;
 		}

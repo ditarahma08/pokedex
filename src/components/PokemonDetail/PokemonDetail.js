@@ -57,13 +57,17 @@ class PokemonDetail extends Component {
 		this.setState({ showModalCatch: false, isCaught: false })
 	}
 
+	onSavePokemon = (nickname) => {
+		this.props.savePokemon(nickname)
+	}
+
 	render() {
 		const { activeIndex, moveDetail, type, showModalCatch, isCaught, caughtMessage } = this.state
 
 		let modalCatch
 
 		if (showModalCatch) {
-			modalCatch = <PokemonCatchResult result={ isCaught } onClose={ this.closeModalCatch } message={ caughtMessage } />
+			modalCatch = <PokemonCatchResult result={ isCaught } onClose={ this.closeModalCatch } message={ caughtMessage } savePokemon={ this.onSavePokemon } />
 		} else {
 			modalCatch = null;
 		}
