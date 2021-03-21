@@ -12,6 +12,7 @@ class PokemonDetail extends Component {
 			type: '',
 			isCaught: false,
 			showModalCatch: false,
+			showModalSuccess: false,
 			caughtMessage: ''
 		}
 	}
@@ -53,8 +54,19 @@ class PokemonDetail extends Component {
 		this.setState({ showModalCatch: true })
 	}
 
-	closeModalCatch = () => {
+	closeModalCatch = (params) => {
 		this.setState({ showModalCatch: false, isCaught: false })
+		if (params === 'success') {
+			this.openModalSaveSuccess()
+		}
+	}
+
+	openModalSaveSuccess = () => {
+		this.setState({ showModalSuccess: true })
+	}
+
+	closeModalSuccess = () => {
+		this.setState({ showModalSuccess: false })
 	}
 
 	onSavePokemon = (nickname) => {
@@ -62,14 +74,20 @@ class PokemonDetail extends Component {
 	}
 
 	render() {
-		const { activeIndex, moveDetail, type, showModalCatch, isCaught, caughtMessage } = this.state
+		const { activeIndex, moveDetail, type, showModalCatch, isCaught, caughtMessage, showModalSuccess } = this.state
 
-		let modalCatch
+		let modalCatch, modalSuccess
 
 		if (showModalCatch) {
 			modalCatch = <PokemonCatchResult result={ isCaught } onClose={ this.closeModalCatch } message={ caughtMessage } savePokemon={ this.onSavePokemon } />
 		} else {
 			modalCatch = null;
+		}
+
+		if (showModalSuccess) {
+			modalSuccess = <PokemonCatchResult result={ false } onClose={ this.closeModalSuccess } message="Pokemon is saved!" />
+		} else {
+			modalSuccess = null;
 		}
 
 		return (
@@ -116,6 +134,8 @@ class PokemonDetail extends Component {
 				</div>
 
 				{ modalCatch }
+
+				{ modalSuccess }
 			</div>
 		)
 	}

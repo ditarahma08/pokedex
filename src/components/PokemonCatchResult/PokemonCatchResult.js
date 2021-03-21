@@ -4,8 +4,12 @@ import PokemonCatchResultForm from '../PokemonCatchResultForm/PokemonCatchResult
 import './PokemonCatchResult.css';
 
 class PokemonCatchResult extends Component {
-	handleClose = () => {
-		this.props.onClose()
+	handleClose = (params) => {
+		if (params === 'success') {
+			this.props.onClose('success')
+		} else {
+			this.props.onClose()
+		}
 	}
 
 	onSavePokemon = (nickname) => {

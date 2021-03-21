@@ -80,8 +80,11 @@ class App extends Component {
 
             <div className="pokedex-main__content">
               <Switch>
-                <Route path="/">
+                <Route exact path="/">
                   { mainPage }
+                </Route>
+                <Route path="/my-pokemon">
+                  <PokemonListAll pokemons={ this.state.myPokemonList } onOpenDetail={ this.openPokemonDetail } />
                 </Route>
               </Switch>
             </div>

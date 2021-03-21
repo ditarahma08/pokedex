@@ -16,7 +16,7 @@ class PokemonCatchResultForm extends Component {
 	savePokemon = () => {
 		this.props.savePokemon(this.state.nickname)
 		this.setState({ nickname: '' })
-		this.props.closeModal()
+		this.props.closeModal('success')
 	}
 
 	render() {
