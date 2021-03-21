@@ -7,6 +7,7 @@
 	border-radius: 10px;
 	padding: 15px;
 	color: var(--dark);
+	user-select: none;
 }
 
 .pokemon-detail img {
@@ -17,6 +18,31 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.pokemon-detail__main button {
+	background-color: var(--white);
+	width: 100px;
+	height: 40px;
+	border: 1px solid var(--cyan);
+	border-radius: 6px;
+	color: var(--cyan);
+	font-weight: bold;
+	font-family: 'Gugi';
+	text-transform: uppercase;
+	cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.pokemon-detail__main button:focus,
+.pokemon-detail__main button:hover,
+.pokemon-detail__main button:active {
+	outline: none;
+}
+
+.pokemon-detail__main button:hover {
+	background-color: var(--cyan);
+	color: var(--white);
 }
 
 .pokemon-detail__profile {

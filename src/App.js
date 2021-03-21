@@ -54,7 +54,7 @@ class App extends Component {
         <div className="pokedex-main">
           <header className="pokedex-main__header">
             <img src={ logo } alt="poke-logo" className="pokedex-main__logo"/>
-            <h4 className="pokedex-main__title">Pokemon Database</h4>
+            <h4 className="pokedex-main__title">Pokédex</h4>
           </header>
 
           <section className="pokedex-main__section">

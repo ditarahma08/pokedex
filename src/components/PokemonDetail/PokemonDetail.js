@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa';
-import PokemonDetailMoves from './PokemonDetailMoves';
+import PokemonCatchResult from '../PokemonCatchResult/PokemonCatchResult';
 import './PokemonDetail.css';
 
 class PokemonDetail extends Component {
@@ -10,6 +10,9 @@ class PokemonDetail extends Component {
 			activeIndex: 0,
 			moveDetail: {},
 			type: '',
+			isCaught: false,
+			showModalCatch: false,
+			caughtMessage: ''
 		}
 	}
 
@@ -41,16 +44,29 @@ class PokemonDetail extends Component {
 
 	catchPokemon = () => {
 		const isCaught = Math.floor(Math.random() * Math.floor(2))
-		console.log(isCaught);
+		console.log(isCaught)
 		if (isCaught === 1) {
-			console.log('catch successful')
+			this.setState({ isCaught: true, caughtMessage: 'Congratulations! You have caught the pokemon! Give it a nickname:' })
 		} else {
-			console.log('catch failed')
+			this.setState({ caughtMessage: 'Sorry! You have to try again!'} )
 		}
+		this.setState({ showModalCatch: true })
+	}
+
+	closeModalCatch = () => {
+		this.setState({ showModalCatch: false, isCaught: false })
 	}
 
 	render() {
-		const { activeIndex, moveDetail, type } = this.state
+		const { activeIndex, moveDetail, type, showModalCatch, isCaught, caughtMessage } = this.state
+
+		let modalCatch
+
+		if (showModalCatch) {
+			modalCatch = <PokemonCatchResult result={ isCaught } onClose={ this.closeModalCatch } message={ caughtMessage } />
+		} else {
+			modalCatch = null;
+		}
 
 		return (
 			<div className="pokemon-detail">
@@ -75,23 +91,27 @@ class PokemonDetail extends Component {
 							</div>
 
 							<table>
-								<tr>
-									<td>Accuracy:</td>
-									<td>{ moveDetail.accuracy ? moveDetail.accuracy : 'xxx' }</td>
-								</tr>
-								<tr>
-									<td>Power:</td>
-									<td>{ moveDetail.power ? moveDetail.power : 'xxx' }</td>
-								</tr>
-								<tr>
-									<td>PP:</td>
-									<td>{ moveDetail.pp ? moveDetail.pp : 'xxx' }</td>
-								</tr>
+								<tbody>
+									<tr>
+										<td>Accuracy:</td>
+										<td>{ moveDetail.accuracy ? moveDetail.accuracy : 'xxx' }</td>
+									</tr>
+									<tr>
+										<td>Power:</td>
+										<td>{ moveDetail.power ? moveDetail.power : 'xxx' }</td>
+									</tr>
+									<tr>
+										<td>PP:</td>
+										<td>{ moveDetail.pp ? moveDetail.pp : 'xxx' }</td>
+									</tr>
+								</tbody>
 							</table>
 						</div>
 						<FaChevronCircleRight className="pokemon-detail__nav" onClick={ this.nextMove } />
 					</div>
 				</div>
+
+				{ modalCatch }
 			</div>
 		)
 	}
