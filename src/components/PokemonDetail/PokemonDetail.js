@@ -110,7 +110,7 @@ class PokemonDetail extends Component {
 		return (
 			<div className="pokemon-detail">
 				<div className="pokemon-detail__main">
-					<img src={ `https://img.pokemondb.net/artwork/large/${this.props.pokemonName}.jpg` } />
+					<img alt="pokemon" src={ `https://img.pokemondb.net/artwork/large/${this.props.pokemonName}.jpg` } />
 					<h2>{ this.props.pokemonName.toUpperCase() }</h2>
 					<button type="button" onClick={ this.catchPokemon }>Catch</button>
 				</div>

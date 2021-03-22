@@ -10,7 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--dark);
+  background-image: url('galaxy.jpeg');
+  background-size: contain;
   min-height: 100vh;
   color: var(--white);
 }
@@ -102,5 +103,69 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 50px;
+}
+
+.pokedex-main__back {
+  display: flex;
+  font-size: 24px;
+  color: var(--cyan);
+  align-items: center;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.pokedex-main__back span {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.pokedex-main__pagination {
+  display: flex;
+  justify-content: space-between;
+  min-width: 280px;
+  max-width: 400px;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 15px;
+}
+
+.pokedex-main__pagination li a {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid var(--cyan);
+  border-radius: 6px;
+  margin: 0 5px;
+  color: var(--cyan);
+  background-color: var(--dark);
+  transition: all 200ms ease-in-out;
+
+}
+
+.pokedex-main__pagination li.break {
+  display: none;
+}
+
+.pokedex-main__pagination li a:hover,
+.pokedex-main__pagination li.selected a {
+  background-color: var(--cyan);
+  color: var(--dark);
+}
+
+.pokedex-main__pagination li a:focus,
+.pokedex-main__pagination li a:active {
+  outline: none;
+}
+
+.pokedex-main__pagination li.disabled a,
+.pokedex-main__pagination li.disabled a:hover {
+  border-color: var(--cyanLight);
+  color: var(--cyanLight);
+  background-color: var(--dark);
+  cursor: not-allowed;
 }
 

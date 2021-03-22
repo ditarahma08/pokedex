@@ -8,6 +8,7 @@
 	padding: 15px;
 	color: var(--dark);
 	user-select: none;
+	margin-top: 15px;
 }
 
 .pokemon-detail img {
@@ -21,12 +22,12 @@
 }
 
 .pokemon-detail__main button {
-	background-color: var(--white);
+	background-color: var(--cyan);
 	width: 100px;
 	height: 40px;
 	border: 1px solid var(--cyan);
 	border-radius: 6px;
-	color: var(--cyan);
+	color: var(--dark);
 	font-weight: bold;
 	font-family: 'Gugi';
 	text-transform: uppercase;
@@ -41,8 +42,8 @@
 }
 
 .pokemon-detail__main button:hover {
-	background-color: var(--cyan);
-	color: var(--white);
+	background-color: var(--dark);
+	color: var(--cyan);
 }
 
 .pokemon-detail__profile {
