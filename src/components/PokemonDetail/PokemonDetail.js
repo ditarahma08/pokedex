@@ -13,6 +13,7 @@ class PokemonDetail extends Component {
 			isCaught: false,
 			showModalCatch: false,
 			showModalSuccess: false,
+			showModalFailed: false,
 			caughtMessage: ''
 		}
 	}
@@ -58,6 +59,8 @@ class PokemonDetail extends Component {
 		this.setState({ showModalCatch: false, isCaught: false })
 		if (params === 'success') {
 			this.openModalSaveSuccess()
+		} else if (params === 'failed') {
+			this.openModalSaveFailed()
 		}
 	}
 
@@ -65,8 +68,16 @@ class PokemonDetail extends Component {
 		this.setState({ showModalSuccess: true })
 	}
 
+	openModalSaveFailed = () => {
+		this.setState({ showModalFailed: true })
+	}
+
 	closeModalSuccess = () => {
 		this.setState({ showModalSuccess: false })
+	}
+
+	closeModalFailed = () => {
+		this.setState({ showModalFailed: false, isCaught: true, showModalCatch: true })
 	}
 
 	onSavePokemon = (nickname) => {
@@ -74,20 +85,26 @@ class PokemonDetail extends Component {
 	}
 
 	render() {
-		const { activeIndex, moveDetail, type, showModalCatch, isCaught, caughtMessage, showModalSuccess } = this.state
+		const { activeIndex, moveDetail, type, showModalCatch, isCaught, caughtMessage, showModalSuccess, showModalFailed } = this.state
 
-		let modalCatch, modalSuccess
+		let modalCatch, modalSuccess, modalFailed
 
 		if (showModalCatch) {
 			modalCatch = <PokemonCatchResult result={ isCaught } onClose={ this.closeModalCatch } message={ caughtMessage } savePokemon={ this.onSavePokemon } />
 		} else {
-			modalCatch = null;
+			modalCatch = null
 		}
 
 		if (showModalSuccess) {
 			modalSuccess = <PokemonCatchResult result={ false } onClose={ this.closeModalSuccess } message="Pokemon is saved!" />
 		} else {
-			modalSuccess = null;
+			modalSuccess = null
+		}
+
+		if (showModalFailed) {
+			modalFailed = <PokemonCatchResult result={ false } onClose={ this.closeModalFailed } message="Nickname is exists! Please use another nickname!" isFailedModal={ true } />
+		} else {
+			modalFailed = null
 		}
 
 		return (
@@ -136,6 +153,8 @@ class PokemonDetail extends Component {
 				{ modalCatch }
 
 				{ modalSuccess }
+
+				{ modalFailed }
 			</div>
 		)
 	}

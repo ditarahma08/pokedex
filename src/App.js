@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import PokemonListAll from './components/PokemonListAll/PokemonListAll';
+import PokemonCollection from './components/PokemonCollection/PokemonCollection';
 import PokemonDetail from './components/PokemonDetail/PokemonDetail';
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+
+const cookies = new Cookies();
 
 class App extends Component {
   constructor() {
@@ -19,6 +23,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchPokemonList()
+    this.initMyPokemonList()
   }
 
   fetchPokemonList() {
@@ -35,6 +40,13 @@ class App extends Component {
     })
   }
 
+  initMyPokemonList = () => {
+    const savedList = cookies.get('my-pokemon')
+    if (savedList !== undefined) {
+      this.setState({ myPokemonList: savedList })
+    }
+  }
+
   openPokemonDetail = (data) => {
     this.setState({ pokemonName: data.name })
     this.fetchPokemonDetail(data.name)
@@ -45,9 +57,31 @@ class App extends Component {
     ownedPokemons.push({
       name: this.state.pokemonName,
       nickname: nickname,
-      ...this.state.pokemon
     })
     this.setState({ myPokemonList: ownedPokemons })
+
+    this.savePokemonList(ownedPokemons)
+  }
+
+  savePokemonList = (list) => {
+    const myList = JSON.stringify(list)
+    this.savePokemonCookies(myList)
+  }
+
+  savePokemonCookies = (list) => {
+    if (cookies.get('my-pokemon') !== undefined) {
+      cookies.remove('my-pokemon')
+    }
+
+    cookies.set('my-pokemon', list)
+  }
+
+  releasePokemon = (nickname) => {
+    const ownedPokemons = this.state.myPokemonList
+    const pokemonIndex = ownedPokemons.findIndex(pokemon => pokemon.nickname === nickname)
+    ownedPokemons.splice(pokemonIndex, 1)
+    this.savePokemonCookies(ownedPokemons)
+    window.location.reload()
   }
 
   render() {
@@ -84,14 +118,14 @@ class App extends Component {
                   { mainPage }
                 </Route>
                 <Route path="/my-pokemon">
-                  <PokemonListAll pokemons={ this.state.myPokemonList } onOpenDetail={ this.openPokemonDetail } />
+                  <PokemonCollection pokemons={ this.state.myPokemonList } onRelease={ this.releasePokemon } />
                 </Route>
               </Switch>
             </div>
           </section>
         </div>
       </Router>
-    ); 
+    );
 
   // return (
   //   <div className="App">

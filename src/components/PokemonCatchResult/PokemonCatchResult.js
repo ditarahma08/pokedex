@@ -5,11 +5,7 @@ import './PokemonCatchResult.css';
 
 class PokemonCatchResult extends Component {
 	handleClose = (params) => {
-		if (params === 'success') {
-			this.props.onClose('success')
-		} else {
-			this.props.onClose()
-		}
+		this.props.onClose(params)
 	}
 
 	onSavePokemon = (nickname) => {
@@ -28,7 +24,7 @@ class PokemonCatchResult extends Component {
 		return (
 			<div className="pokemon-catch">
 				<div className="pokemon-catch__close">
-					<FaTimes onClick={ this.handleClose } />
+					<FaTimes onClick={ () => this.handleClose( this.props.isFailedModal ? 'close-warning' : '') } />
 				</div>
 
 				<div className="pokemon-catch__message">
