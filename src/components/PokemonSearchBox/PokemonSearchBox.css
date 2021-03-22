@@ -7,7 +7,7 @@
 }
 
 .pokemon-search input {
-	background-color: var(--dark);
+	background: transparent;
 	border: none;
 	margin-left: 10px;
 	color: var(--cyan);

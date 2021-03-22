@@ -30,6 +30,6 @@
 }
 
 .pokemon-list__card button:hover {
-	background-color: var(--dark);
+	background-color: transparent;
 	color: var(--cyan);
 }

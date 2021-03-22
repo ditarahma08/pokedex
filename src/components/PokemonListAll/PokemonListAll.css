@@ -13,8 +13,8 @@
 	margin: 15px;
 	padding: 15px;
 	width: 250px;
-	background-color: var(--white);
-	color: var(--dark);
+	border: 1px solid var(--cyan);
+	color: var(--white);
 	border-radius: 10px;
 	transition: transform .25s ease-out,-webkit-transform .25s ease-out;
 	cursor: pointer;
@@ -22,6 +22,7 @@
 
 .pokemon-list__card:hover {
 	transform: scale(1.05);
+  box-shadow: 0 0 5px var(--cyanLight), 0 0 5px var(--cyanLight);
 }
 
 .pokemon-list__card img {

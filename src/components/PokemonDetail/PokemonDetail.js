@@ -46,7 +46,6 @@ class PokemonDetail extends Component {
 
 	catchPokemon = () => {
 		const isCaught = Math.floor(Math.random() * Math.floor(2))
-		console.log(isCaught)
 		if (isCaught === 1) {
 			this.setState({ isCaught: true, caughtMessage: 'Congratulations! You have caught the pokemon! Give it a nickname:' })
 		} else {
@@ -110,14 +109,39 @@ class PokemonDetail extends Component {
 		return (
 			<div className="pokemon-detail">
 				<div className="pokemon-detail__main">
-					<img alt="pokemon" src={ `https://img.pokemondb.net/artwork/large/${this.props.pokemonName}.jpg` } />
-					<h2>{ this.props.pokemonName.toUpperCase() }</h2>
-					<button type="button" onClick={ this.catchPokemon }>Catch</button>
+						<img alt="pokemon" src={ `https://www.serebii.net/pokemongo/pokemon/${this.props.pokemonId}.png` } />
+						<h2>{ this.props.pokemonName.toUpperCase() }</h2>
+						<button type="button" onClick={ this.catchPokemon }>Catch</button>
 				</div>
 
 				<div className="pokemon-detail__content">
 					<div className="pokemon-detail__profile">
+
+						<div className="pokemon-detail__move">
+							<table>
+								<tbody>
+									<tr>
+										<td>Height</td>
+										<td>{ this.props.pokemonDetail.height }" </td>
+									</tr>
+									<tr>
+										<td>Weight</td>
+										<td>{ this.props.pokemonDetail.weight } lbs</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div className="pokemon-detail__types">
+								{ this.props.pokemonDetail.types.map(type => (
+									<span className="pokemon-detail__type">{ type.type.name }</span>
+								))}
+							</div>
+						</div>
+
+						<div className="pokemon-detail__move-detail">
+
 						<FaChevronCircleLeft className="pokemon-detail__nav" onClick={ this.prevMove } />
+
 						<div className="pokemon-detail__move">
 							<span className="pokemon-detail__move-name">
 								{ this.props.pokemonDetail.moves[activeIndex].move.name }
@@ -147,6 +171,7 @@ class PokemonDetail extends Component {
 							</table>
 						</div>
 						<FaChevronCircleRight className="pokemon-detail__nav" onClick={ this.nextMove } />
+						</div>
 					</div>
 				</div>
 

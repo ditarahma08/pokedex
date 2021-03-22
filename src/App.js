@@ -19,6 +19,7 @@ class App extends Component {
       pokemons: [],
       pokemon: {},
       pokemonName: '',
+      pokemonId: 0,
       page: 'pokemon-list',
       myPokemonList: [],
       search: '',
@@ -30,13 +31,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchPokemonList()
+    this.fetchPokemonList(0)
     this.initMyPokemonList()
   }
 
-  fetchPokemonList() {
+  fetchPokemonList(offset) {
     const currentOffset = this.state.pagination.offset
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${this.state.pagination.offset}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset}`)
     .then(response => response.json())
     .then(data => this.setState({ pokemons: data.results, pagination: { total: data.count, offset: currentOffset + 10 } }))
   }
@@ -59,6 +60,17 @@ class App extends Component {
   openPokemonDetail = (data) => {
     this.setState({ pokemonName: data.name })
     this.fetchPokemonDetail(data.name)
+    this.generatePokemonId(data.url)
+  }
+
+  generatePokemonId = (url) => {
+    let pokemonId = url.replace('https://pokeapi.co/api/v2/pokemon/', '').slice(0, -1)
+    if (pokemonId.length === 1) {
+      pokemonId = `00${pokemonId}`
+    } else if (pokemonId.length === 2) {
+      pokemonId = `0${pokemonId}`
+    }
+    this.setState({ pokemonId: pokemonId })
   }
 
   onSavePokemon = (nickname) => {
@@ -66,6 +78,7 @@ class App extends Component {
     ownedPokemons.push({
       name: this.state.pokemonName,
       nickname: nickname,
+      id: this.state.pokemonId
     })
     this.setState({ myPokemonList: ownedPokemons })
 
@@ -94,10 +107,9 @@ class App extends Component {
   }
 
   handlePageChange = (page) => {
-    const pageSelected = page.selected + 1
-    const itemTotal = this.state.pagination.total
-    this.setState({ search: '', pagination: { offset: pageSelected * 10, total: itemTotal }})
-    this.fetchPokemonList()
+    const newOffset = page.selected * 10
+    this.setState({ search: '' })
+    this.fetchPokemonList(newOffset)
   }
 
   handleSearch = (params) => {
@@ -110,7 +122,7 @@ class App extends Component {
 
   render() {
 
-    const { pokemons, pokemon, pokemonName, page, search, myPokemonList } = this.state;
+    const { pokemons, pokemon, pokemonName, page, search, myPokemonList, pokemonId } = this.state;
     const filteredPokemons = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()));
     const filteredMyPokemons = myPokemonList.filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()));
     let mainPage, headerTop, previous, next;
@@ -120,7 +132,7 @@ class App extends Component {
       mainPage = <PokemonListAll pokemons={ filteredPokemons } onOpenDetail={ this.openPokemonDetail }></PokemonListAll>;
     } else {
       headerTop = <div class="pokedex-main__back" onClick={ this.backToList }><FaChevronCircleLeft /><span>Back to List</span></div>
-      mainPage = <PokemonDetail pokemonDetail={ pokemon } pokemonName={ pokemonName } savePokemon={ this.onSavePokemon }></PokemonDetail>;
+      mainPage = <PokemonDetail pokemonDetail={ pokemon } pokemonName={ pokemonName } pokemonId={ pokemonId } savePokemon={ this.onSavePokemon }></PokemonDetail>;
     }
 
     previous = <FaChevronLeft />
@@ -130,7 +142,6 @@ class App extends Component {
       <Router>
         <div className="pokedex-main">
           <header className="pokedex-main__header">
-            <img src={ logo } alt="poke-logo" className="pokedex-main__logo"/>
             <h4 className="pokedex-main__title">Pokédex</h4>
           </header>
 
@@ -150,6 +161,8 @@ class App extends Component {
                   { headerTop }
 
                   { mainPage }
+
+                  { this.state.page === 'pokemon-list' &&
                   <ReactPaginate
                    previousLabel={ previous }
                     nextLabel={ next }
@@ -159,6 +172,7 @@ class App extends Component {
                     pageCount={ Math.ceil(this.state.pagination.total / 10) }
                     onPageChange={ this.handlePageChange }
                     containerClassName={ 'pokedex-main__pagination' } />
+                    }
                 </Route>
 
                 <Route path="/my-pokemon">
