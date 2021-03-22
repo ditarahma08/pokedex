@@ -1,38 +1,190 @@
-.App {
-  text-align: center;
+:root {
+  --white: #fff;
+  /*--dark: rgba(26, 43, 53, 1);*/
+  --dark: #000;
+  --green: rgba(80, 350, 123, 1);
+  /*--cyan: rgba(0, 190, 190, 1);*/
+  --cyan: #00d2ff;
+  /*--cyanLight: rgba(0, 190, 190, 0.7);*/
+  --cyanLight: #b3eafe;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.pokedex-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-image: url('galaxy.jpeg');
+  background-size: contain;
+  min-height: 100vh;
+  color: var(--white);
 }
 
-.App-link {
-  color: #61dafb;
+.pokedex-main__header {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  padding: 15px;
 }
+/*
+.pokedex-main__logo {
+  height: 50px;
+  margin-right: 15px;
+  animation: pokedex-logo-spin infinite 3s linear;
+}*/
 
-@keyframes App-logo-spin {
+/*@keyframes pokedex-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}*/
+
+.pokedex-main__title {
+  font-size: 24px;
+  letter-spacing: 3px;
+  background-color: var(--cyan);
+  color: var(--dark);
+  padding: 15px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  box-shadow: 0 0 5px var(--cyanLight), 0 0 5px var(--cyanLight);
 }
+
+.pokedex-main__section {
+  font-family: 'Gugi';
+  font-size: 14px;
+  width: 100%;
+  min-width: 320px;
+  max-width: 767px;
+}
+
+.pokedex-main__menu {
+  position: relative;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  color: var(--cyan);
+  margin: 15px;
+  margin-bottom: 0;
+}
+
+.pokedex-main__tab {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 35px;
+  border: 2px solid var(--cyan);
+  padding: 20px 15px 10px 15px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--cyan);
+  transition: all 200ms ease-in-out;
+}
+
+.pokedex-main__tab:first-child {
+  margin-right: 5px;
+}
+
+.pokedex-main__tab:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  font-weight: bold;
+  box-shadow: 0 0 5px var(--cyanLight), 0 0 5px var(--cyanLight);
+}
+
+.pokedex-main__tab.active {
+  background-color: var(--cyan);
+  box-shadow: 0 0 5px var(--cyanLight), 0 0 5px var(--cyanLight);
+  color: var(--white);
+  font-weight: bold;
+  height: 35px;
+}
+
+.pokedex-main__content {
+  border: 2px solid var(--cyan);
+  padding: 15px;
+  margin: 15px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.pokedex-main__back {
+  display: flex;
+  font-size: 24px;
+  color: var(--cyan);
+  align-items: center;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.pokedex-main__back span {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.pokedex-main__pagination {
+  display: flex;
+  justify-content: space-between;
+  min-width: 280px;
+  max-width: 400px;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 15px;
+}
+
+.pokedex-main__pagination li a {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid var(--cyan);
+  border-radius: 6px;
+  margin: 0 5px;
+  color: var(--cyan);
+  background-color: transparent;
+  transition: all 200ms ease-in-out;
+
+}
+
+.pokedex-main__pagination li.break {
+  display: none;
+}
+
+.pokedex-main__pagination li a:hover,
+.pokedex-main__pagination li.selected a {
+  background-color: var(--cyan);
+  box-shadow: 0 0 5px var(--cyanLight), 0 0 5px var(--cyanLight);
+  color: var(--dark);
+}
+
+.pokedex-main__pagination li a:focus,
+.pokedex-main__pagination li a:active {
+  outline: none;
+}
+
+.pokedex-main__pagination li.disabled a,
+.pokedex-main__pagination li.disabled a:hover {
+  border-color: var(--cyanLight);
+  color: var(--cyanLight);
+  background-color: var(--dark);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+

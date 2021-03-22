@@ -1,0 +1,35 @@
+.pokemon-list__name {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 20px 0 10px 0;
+}
+
+.pokemon-list__nickname {
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+.pokemon-list__card button {
+	background-color: var(--cyan);
+	width: 100px;
+	height: 40px;
+	border: 1px solid var(--cyan);
+	border-radius: 6px;
+	color: var(--dark);
+	font-weight: bold;
+	font-family: 'Gugi';
+	text-transform: uppercase;
+	cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.pokemon-list__card button:focus,
+.pokemon-list__card button:hover,
+.pokemon-list__card button:active {
+	outline: none;
+}
+
+.pokemon-list__card button:hover {
+	background-color: transparent;
+	color: var(--cyan);
+}

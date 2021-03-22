@@ -1,0 +1,129 @@
+.pokemon-detail {
+	display: flex;
+	justify-content: space-around;
+	position: relative;
+	width: 95%;
+	border-radius: 10px;
+	padding: 15px;
+	color: var(--white);
+	user-select: none;
+	margin-top: 15px;
+}
+
+.pokemon-detail img {
+	height: 150px;
+}
+
+.pokemon-detail__main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pokemon-detail__main button {
+	background-color: var(--cyan);
+	width: 100px;
+	height: 40px;
+	border: 1px solid var(--cyan);
+	border-radius: 6px;
+	color: var(--dark);
+	font-weight: bold;
+	font-family: 'Gugi';
+	text-transform: uppercase;
+	cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.pokemon-detail__main button:focus,
+.pokemon-detail__main button:hover,
+.pokemon-detail__main button:active {
+	outline: none;
+}
+
+.pokemon-detail__main button:hover {
+	background-color: transparent;
+	color: var(--cyan);
+}
+
+.pokemon-detail__profile {
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pokemon-detail__types {
+	margin: 15px 0;
+}
+
+.pokemon-detail__type {
+	border: 1px solid var(--cyan);
+	background-color: var(--cyan);
+	color: var(--dark);
+  padding: 7px 15px;
+  border-radius: 5px;
+  margin-right: 7px;
+  text-transform: uppercase;
+}
+
+.pokemon-detail__move-detail {
+	display: flex;
+	align-items: center;
+}
+
+.pokemon-detail__nav {
+	font-size: 36px;
+	cursor: pointer;
+	color: var(--cyan);
+}
+
+.pokemon-detail__nav:hover {
+	color: var(--cyan);
+}
+
+.pokemon-detail__move {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+	border: 2px solid var(--cyan);
+	border-radius: 8px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.pokemon-detail__move table {
+	margin-top: 10px;
+	width: 100%;
+}
+
+.pokemon-detail__move table td {
+	width: 100px;
+}
+
+.pokemon-detail__move-name {
+	text-transform: capitalize;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.pokemon-detail__move-type {
+	border: 1px solid var(--dark);
+	max-width: 110px;
+	padding: 5px;
+	border-radius: 4px;
+	margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+	.pokemon-detail {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.pokemon-detail__main {
+		align-items: center;
+	}
+
+	.pokemon-detail__profile {
+		margin-top: 25px;
+	}
+}

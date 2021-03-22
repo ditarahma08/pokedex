@@ -1,0 +1,60 @@
+.pokemon-result {
+	display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pokemon-result__form input {
+	background-color: var(--dark);
+	border: none;
+	border-bottom: 1px solid var(--cyan);
+	color: var(--cyan);
+	height: 40px;
+	font-size: 16px;
+	font-family: 'Gugi';
+}
+
+.pokemon-result__form input::placeholder {
+	color: var(--cyan);
+}
+
+.pokemon-result__form input:focus,
+.pokemon-result__form input:active {
+	outline: none;
+}
+
+.pokemon-result__button button {
+	background-color: var(--dark);
+	width: 100px;
+	height: 40px;
+	border: 1px solid var(--cyan);
+	border-radius: 6px;
+	color: var(--cyan);
+	font-weight: bold;
+	font-family: 'Gugi';
+	text-transform: uppercase;
+	cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.pokemon-result__button button:focus,
+.pokemon-result__button button:hover,
+.pokemon-result__button button:active {
+	outline: none;
+}
+
+.pokemon-result__button button:hover {
+	background-color: var(--cyan);
+	color: var(--dark);
+}
+
+.pokemon-result__button button:disabled {
+	cursor: not-allowed;
+}
+
+.pokemon-result__button button:disabled:hover {
+	background-color: var(--dark);
+	color: var(--cyan);
+}
