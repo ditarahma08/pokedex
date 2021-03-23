@@ -9,8 +9,15 @@ class PokemonCatchResultForm extends Component {
 		super();
 		this.state = {
 			nickname: '',
-			myPokemonList: cookies.get('my-pokemon'),
+			myPokemonList: [],
 			showWarning: false
+		}
+	}
+
+	componentDidMount = () => {
+		const myList = cookies.get('my-pokemon')
+		if (myList !== undefined) {
+			this.setState({ myPokemonList: myList })
 		}
 	}
 
@@ -20,6 +27,7 @@ class PokemonCatchResultForm extends Component {
 
 	savePokemon = () => {
 		const isNameExist = this.state.myPokemonList.find(pokemon => pokemon.nickname === this.state.nickname)
+		console.log(isNameExist)
 		if (isNameExist) {
 			this.setState({ showWarning: true })
 			this.props.closeModal('failed')
