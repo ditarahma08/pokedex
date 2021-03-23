@@ -9,8 +9,15 @@ class PokemonCatchResultForm extends Component {
 		super();
 		this.state = {
 			nickname: '',
-			myPokemonList: cookies.get('my-pokemon'),
+			myPokemonList: [],
 			showWarning: false
+		}
+	}
+
+	componentDidMount = () => {
+		const myList = cookies.get('my-pokemon')
+		if (myList !== undefined) {
+			this.setState({ myPokemonList: myList })
 		}
 	}
 

@@ -1,11 +1,8 @@
 :root {
   --white: #fff;
-  /*--dark: rgba(26, 43, 53, 1);*/
   --dark: #000;
   --green: rgba(80, 350, 123, 1);
-  /*--cyan: rgba(0, 190, 190, 1);*/
   --cyan: #00d2ff;
-  /*--cyanLight: rgba(0, 190, 190, 0.7);*/
   --cyanLight: #b3eafe;
 }
 

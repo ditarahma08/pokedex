@@ -133,7 +133,7 @@ class PokemonDetail extends Component {
 
 							<div className="pokemon-detail__types">
 								{ this.props.pokemonDetail.types.map(type => (
-									<span className="pokemon-detail__type">{ type.type.name }</span>
+									<span className="pokemon-detail__type" key={ type.type.name }>{ type.type.name }</span>
 								))}
 							</div>
 						</div>

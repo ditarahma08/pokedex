@@ -11,7 +11,7 @@ class PokemonCollection extends Component {
 		return (
 			<div className="pokemon-list">
 				{ this.props.pokemons.map(pokemon => (
-				<div className="pokemon-list__card" key={ pokemon.name }>
+				<div className="pokemon-list__card" key={ pokemon.nickname }>
 					<img alt="pokemon" src={ `https://www.serebii.net/pokemongo/pokemon/${pokemon.id}.png` }/>
 					<span className="pokemon-list__name">{ pokemon.name.toUpperCase() }
 					</span>
