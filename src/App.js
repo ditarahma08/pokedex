@@ -7,7 +7,6 @@ import PokemonCollection from './components/PokemonCollection/PokemonCollection'
 import PokemonDetail from './components/PokemonDetail/PokemonDetail';
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import { FaChevronLeft, FaChevronCircleLeft, FaChevronRight } from 'react-icons/fa';
-import logo from './logo.svg';
 import './App.css';
 
 const cookies = new Cookies();
@@ -131,7 +130,7 @@ class App extends Component {
       headerTop = <PokemonSearchBox onChange={ this.handleSearch }/>
       mainPage = <PokemonListAll pokemons={ filteredPokemons } onOpenDetail={ this.openPokemonDetail }></PokemonListAll>;
     } else {
-      headerTop = <div class="pokedex-main__back" onClick={ this.backToList }><FaChevronCircleLeft /><span>Back to List</span></div>
+      headerTop = <div className="pokedex-main__back" onClick={ this.backToList }><FaChevronCircleLeft /><span>Back to List</span></div>
       mainPage = <PokemonDetail pokemonDetail={ pokemon } pokemonName={ pokemonName } pokemonId={ pokemonId } savePokemon={ this.onSavePokemon }></PokemonDetail>;
     }
 
@@ -164,9 +163,8 @@ class App extends Component {
 
                   { this.state.page === 'pokemon-list' &&
                   <ReactPaginate
-                   previousLabel={ previous }
+                    previousLabel={ previous }
                     nextLabel={ next }
-                    marginPagesDisplayed={ 1 }
                     pageRangeDisplayed={ 2 }
                     marginPagesDisplayed={ 0 }
                     pageCount={ Math.ceil(this.state.pagination.total / 10) }
@@ -185,26 +183,6 @@ class App extends Component {
         </div>
       </Router>
     );
-
-  // return (
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <img src={logo} className="App-logo" alt="logo" />
-  //       <p>
-  //         Edit <code>src/App.js</code> and save to reload.
-  //       </p>
-  //       <a
-  //         className="App-link"
-  //         href="https://reactjs.org"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         Learn React
-  //       </a>
-  //     </header>
-  //   </div>
-  // );
-
  }
 }
 
