@@ -27,7 +27,6 @@ class PokemonCatchResultForm extends Component {
 
 	savePokemon = () => {
 		const isNameExist = this.state.myPokemonList.find(pokemon => pokemon.nickname === this.state.nickname)
-		console.log(isNameExist)
 		if (isNameExist) {
 			this.setState({ showWarning: true })
 			this.props.closeModal('failed')
