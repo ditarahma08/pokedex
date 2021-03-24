@@ -5,7 +5,7 @@ import PokemonSearchBox from './components/PokemonSearchBox/PokemonSearchBox';
 import PokemonListAll from './components/PokemonListAll/PokemonListAll';
 import PokemonCollection from './components/PokemonCollection/PokemonCollection';
 import PokemonDetail from './components/PokemonDetail/PokemonDetail';
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
 import { FaChevronLeft, FaChevronCircleLeft, FaChevronRight } from 'react-icons/fa';
 import './App.css';
 
@@ -138,50 +138,48 @@ class App extends Component {
     next = <FaChevronRight />
 
     return (
-      <Router>
-        <div className="pokedex-main">
-          <header className="pokedex-main__header">
-            <h4 className="pokedex-main__title">Pokédex</h4>
-          </header>
+      <div className="pokedex-main">
+        <header className="pokedex-main__header">
+          <h4 className="pokedex-main__title">Pokédex</h4>
+        </header>
 
-          <section className="pokedex-main__section">
-            <div className="pokedex-main__menu">
-              <NavLink exact to="/" className="pokedex-main__tab" activeClassName="active" onClick={ () => this.handleSearch('') }>
-                <span>Browse Pokemon</span>
-              </NavLink>
-              <NavLink to="/my-pokemon" className="pokedex-main__tab" activeClassName="active" onClick={ () => this.handleSearch('') }>
-                <span>My Pokemon</span>
-              </NavLink>
-            </div>
+        <section className="pokedex-main__section">
+          <div className="pokedex-main__menu">
+            <NavLink exact to="/" className="pokedex-main__tab" activeClassName="active" onClick={ () => this.handleSearch('') }>
+              <span>Browse Pokemon</span>
+            </NavLink>
+            <NavLink to="/my-pokemon" className="pokedex-main__tab" activeClassName="active" onClick={ () => this.handleSearch('') }>
+              <span>My Pokemon</span>
+            </NavLink>
+          </div>
 
-            <div className="pokedex-main__content">
-              <Switch>
-                <Route exact path="/">
-                  { headerTop }
+          <div className="pokedex-main__content">
+            <Switch>
+              <Route exact path="/">
+                { headerTop }
 
-                  { mainPage }
+                { mainPage }
 
-                  { this.state.page === 'pokemon-list' &&
-                  <ReactPaginate
-                    previousLabel={ previous }
-                    nextLabel={ next }
-                    pageRangeDisplayed={ 2 }
-                    marginPagesDisplayed={ 0 }
-                    pageCount={ Math.ceil(this.state.pagination.total / 10) }
-                    onPageChange={ this.handlePageChange }
-                    containerClassName={ 'pokedex-main__pagination' } />
-                    }
-                </Route>
+                { this.state.page === 'pokemon-list' &&
+                <ReactPaginate
+                  previousLabel={ previous }
+                  nextLabel={ next }
+                  pageRangeDisplayed={ 2 }
+                  marginPagesDisplayed={ 0 }
+                  pageCount={ Math.ceil(this.state.pagination.total / 10) }
+                  onPageChange={ this.handlePageChange }
+                  containerClassName={ 'pokedex-main__pagination' } />
+                  }
+              </Route>
 
-                <Route path="/my-pokemon">
-                  <PokemonSearchBox onChange={ this.handleSearch }/>
-                  <PokemonCollection pokemons={ filteredMyPokemons } onRelease={ this.releasePokemon } />
-                </Route>
-              </Switch>
-            </div>
-          </section>
-        </div>
-      </Router>
+              <Route path="/my-pokemon">
+                <PokemonSearchBox onChange={ this.handleSearch }/>
+                <PokemonCollection pokemons={ filteredMyPokemons } onRelease={ this.releasePokemon } />
+              </Route>
+            </Switch>
+          </div>
+        </section>
+      </div>
     );
  }
 }
